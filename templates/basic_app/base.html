@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!--    <link rel="stylesheet" href="{% static 'css/finalapp.css' %}">-->
+</head>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="{% url 'basic_app:index'%}">Django</a></li>
+                <li><a class="navbar-link" href="{% url 'admin:index'%}">Django</a></li>
+                <li><a class="navbar-link" href="{% url 'basic_app:register'%}">Register</a></li>
+                {% if user.is_authenticated%}
+                <li><a href="{% url 'basic_app:logout' %}" class="navbar-link">Log out</a></li>
+                {% else %}
+                <li><a href="{% url 'basic_app:user_login' %}" class="navbar-link">Login </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block body_block %}
+        {% endblock %}
+    </div>
+</body>
+</html>
